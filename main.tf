@@ -1,9 +1,9 @@
 provider "google" {
  // credentials = "var.credentials"
   credentials = "${file("terraform-1-125-8d83f2c5c03b.json")}"
-  project     = "var.poject"
-  region      = "var.region"
-  zone        = "var.zone"
+  project     = var.project
+  region      = var.region
+  zone        = var.zone
   }
 
 resource "google_compute_instance" "appserver" {
@@ -23,3 +23,4 @@ resource "google_compute_instance" "appserver" {
       // Ephemeral IP
     }
 }
+
