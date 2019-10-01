@@ -1,0 +1,6 @@
+# ignor keys
+
+*.json
+*.pub
+
+.terraform/
