@@ -1,6 +1,6 @@
 provider "google" {
  // credentials = "var.credentials"
-  credentials = "${file("terraform-1-125-dd2aa12ead53.json")}"
+  credentials = "${file("C:/Git-1/terraform/Keys/terraform-1-125-0acec1141512.json")}"
   project     = var.project
   region      = var.region
   zone        = var.zone
@@ -13,7 +13,7 @@ resource "google_compute_instance" "jenkins" {
    tags = ["jenkins","http-server"]
 
    metadata = {
-sshKeys = "petro:${file("instance.pub")}"
+sshKeys = "petro:${file("C:/Git-1/terraform/Keys/cloud.pub")}"
    }
 
    boot_disk {
@@ -31,22 +31,15 @@ sshKeys = "petro:${file("instance.pub")}"
 connection {
     user = "petro"
     host = "${google_compute_instance.jenkins.network_interface.0.access_config.0.nat_ip}"
-    private_key = "${file("C:/Users/pduzi/.ssh/instance")}"
+    private_key = "${file("C:/Git-1/terraform/Keys/cloud")}"
     agent = false  
   } 
 
 provisioner "remote-exec" {
       inline = [
-
         // install java-openjdk and Jenkins
-        // "sudo yum update -y",
-        "sudo yum install java-1.8.0-openjdk-devel -y", 
-        "sudo yum install wget -y",
-        "sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo",
-        "sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key",
-        "sudo yum install jenkins -y",
-        "sudo systemctl start jenkins.service",
-        "sudo systemctl enable jenkins.service"
+        "chmod +x C:/Git-1/terraform/files/jenkins-install.sh ",
+        "C:/Git-1/terraform./files/jenkins-install.sh"     
       ]
   }
 }    

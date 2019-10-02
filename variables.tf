@@ -18,3 +18,12 @@ description = "zone"
 default = "europe-west4-a"
 }
 
+variable "Jenkins_user" {
+description = "Jenkins_user"
+default = "petro-j"
+}
+
+variable "Jenkins_pass" {
+description = "Jenkins_pass"
+default = "Qwerty123!"
+}
