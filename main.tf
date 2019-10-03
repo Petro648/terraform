@@ -13,7 +13,7 @@ resource "google_compute_instance" "jenkins" {
    tags = ["jenkins","http-server"]
 
    metadata = {
-sshKeys = "petro:${file("C:/Git-1/terraform/Keys/cloud.pub")}"
+sshKeys = "petro:${file("C:/Git-1/terraform1/Keys/cloud.pub")}"
    }
 
    boot_disk {
@@ -31,15 +31,15 @@ sshKeys = "petro:${file("C:/Git-1/terraform/Keys/cloud.pub")}"
 connection {
     user = "petro"
     host = "${google_compute_instance.jenkins.network_interface.0.access_config.0.nat_ip}"
-    private_key = "${file("C:/Git-1/terraform/Keys/cloud")}"
+    private_key = "${file("C:/Git-1/terraform1/Keys/cloud")}"
     agent = false  
   } 
 
 provisioner "remote-exec" {
       inline = [
         // install java-openjdk and Jenkins
-        "chmod +x C:/Git-1/terraform/files/jenkins-install.sh ",
-        "C:/Git-1/terraform./files/jenkins-install.sh"     
+        "chmod +x C:/Git-1/terraform1/files/jenkins-install.sh ",
+        "C:/Git-1/terraform1/files/jenkins-install.sh"     
       ]
   }
 }    
