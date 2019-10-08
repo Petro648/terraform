@@ -27,3 +27,8 @@ variable "Jenkins_pass" {
 description = "Jenkins_pass"
 default = "Qwerty123!"
 }
+
+variable "inst_count" {
+    description = "namber instance"
+    default = 3  
+}
